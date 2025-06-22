@@ -426,7 +426,7 @@ h1,h2,h3,h4,h5,h6{
 }
 .services-providing{
   display: flex;
-  gap: 30px;
+  gap: 20px;
   align-items: center;
 }
 .inner-service-card h3 {
@@ -1936,6 +1936,9 @@ section.blog-section {
 .mobile-menu-icon svg {
     fill: #fff;
     font-size: 35px;
+}
+.inner-service-card::before {
+    font-size: 20px;
 }
 
 .search-icon {
