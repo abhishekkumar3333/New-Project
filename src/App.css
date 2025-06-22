@@ -1856,6 +1856,9 @@ h2.bussiness {
     position: relative;
     top: 0;
 }
+li.logout-btn {
+    display: block;
+}
 
 .imge-content {
     margin: 0;
@@ -1985,4 +1988,7 @@ header#header {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+.logout-btn{
+  display: none;
 }

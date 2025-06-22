@@ -100,6 +100,7 @@ useEffect(() => {
                   <li><Link to="/allproducts">Shop</Link></li>
                   <li><Link to="/blog">Blog</Link></li>
                   <li><Link to="/contact">Contact</Link></li>
+                  <li className='logout-btn'><Link to="/login">Logout</Link></li>
                 </ul>
               </div>
 
