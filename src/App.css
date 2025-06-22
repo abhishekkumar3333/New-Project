@@ -1509,9 +1509,11 @@ span.home {
 }
 .nav ul {
   display: flex;
-  justify-content: center;
   align-items: center;
   gap: 20px;
+}
+.product-cards {
+    display: block;
 }
 .nav ul li:hover{
   color: #ffaa17;
@@ -1650,7 +1652,8 @@ background-content h2 {
 button.play-btn {margin-top: 15px;}
 
 .services-providing {
-    display: block;
+    display: grid;
+    grid-template-columns: repeat(2, 47%);
 }
 .banner-content h1 {
     font-size: 55px;
@@ -1662,6 +1665,12 @@ section.tabing-section {
     width: 100%;
     margin: 10px 0;
     height: auto;
+    padding: 0;
+}
+.inner-service-card:hover::before {
+    color: #7c8498;
+    font-weight: 400;
+    font-size: 20px;
 }
 
 .services {
@@ -1709,7 +1718,7 @@ header,section {
 }
 
 h2 {
-    font-size: 44px !important;
+    font-size: 40px !important;
 }
 .imge-content h2 {
     font-size: 19px !important;
@@ -1732,7 +1741,6 @@ section.banner h2 {
 button.btn-blue {
     padding: 10px 20px;
     font-size: 11px;
-    margin-top: 10px;
 }
 p.summary {
     line-height: 1.5 !important;
@@ -1769,22 +1777,24 @@ section.banner {
 }
 
 .quality {
-    display: block;
+    display: flex;
+    width: 92%;
+    gap: 10px;
 }
 
 .service-features h2 {
     font-size: 25px;
 }
 .consulators img {
-    width: 47px;
+    width: 40px;
 }
 
 .trusted img {
-    width: 50px;
+    width: 40px;
 }
 
 p.titile {
-    font-size: 20px !important;
+    font-size: 16px !important;
 }
 section.service-list {
     margin: 20px;
@@ -1803,14 +1813,26 @@ section.service-list {
 }
 
 .inner-service-card {
-    /* width: 73px; */
-    margin-bottom: 10px;
     padding: 20px;
 }
 .inner-service-card img {
     margin-top: 20px;
+    width: 35px;
 }
-
+.inner-service-card h3 {
+    font-size: 12px;
+}
+.users {
+    margin-bottom: 15px;
+}
+.top-heading {
+    margin-bottom: 25px;
+}
+.nav ul {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
 .rows {
     flex-wrap: wrap;
     width: 100%;

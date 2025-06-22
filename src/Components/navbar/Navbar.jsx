@@ -18,7 +18,9 @@ const Navbar = () => {
     localStorage.clear();
     navigate("/login");
   };
-
+useEffect(() => {
+  setMobileMenuOpen(false);
+}, [location.pathname]);
   useEffect(() => {
     const header = document.getElementById("stiky-header");
     const mainHeader = document.getElementById("header");
@@ -79,7 +81,7 @@ const Navbar = () => {
           <div className="container">
             <div className="main-header">
              <div className='logo-outer'> <div className="logo">
-                <img src="logo1.webp" alt="Logo" />
+                <img src="logo1.webp" alt="Logo" onClick={()=>navigate("/")} />
               </div>
 
               {/* Mobile Menu Toggle */}
