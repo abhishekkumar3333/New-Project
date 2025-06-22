@@ -1653,7 +1653,7 @@ button.play-btn {margin-top: 15px;}
 
 .services-providing {
     display: grid;
-    grid-template-columns: repeat(2, 47%);
+    grid-template-columns: repeat(2, 46%);
 }
 .banner-content h1 {
     font-size: 55px;
