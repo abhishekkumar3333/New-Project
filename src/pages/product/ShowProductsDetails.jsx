@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Spinner from '../../Components/spiner/Spiner';
-import user1 from '../../assets/about-11-1-1.webp';
 import user2 from '../../assets/blog-8-2.webp';
 
 const ProductDetails = () => {
@@ -10,6 +9,31 @@ const ProductDetails = () => {
   const [quantity, setQuantity] = useState(1);
   const [bgColor, setBgColor] = useState('');
   const [likeProduct, setLikeProduct] = useState('');
+  const [review, setReview] = useState('');
+  const [comment, setComment] = useState([])
+  const [rating, setRating] = useState(0);
+
+
+
+  const handleSubmit = (e) => {
+  e.preventDefault();
+
+  if (review.trim()) {
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    const newComment = {
+      message: review,
+      rating: rating,
+      author: user?.firstName + " " + user?.lastName || "Guest",
+      image: user?.image || user2,
+      date: new Date().toLocaleString(),
+    };
+
+    setComment([...comment, newComment]);
+    setReview("");
+    setRating(0);
+  }
+};
 
   const handleProductLike = (love) => {
     setLikeProduct(love);
@@ -140,61 +164,54 @@ const ProductDetails = () => {
         </section>
 
         <section className="comments-section">
-          <h3 className="section-title">2 Comments</h3>
-
-          <div className="comment-box">
-            <img src={user1} alt="Jessica Brown" className="comment-avatar" />
-            <div className="comment-content">
-              <div className="comment-header">
-                <div>
-                  <h4>Jessica Brown</h4>
-                  <span className="comment-date">20 May, 2020 . 4:00 pm</span>
-                </div>
-                <div className="comment-rating">★★★★★</div>
-              </div>
-              <p>
-                Aliquam et facilisis arcuut olestie augue. Suspendisse sodales tortor nunc quis auctor ligula posuere
-                cursus duis aute irure dolor in reprehenderit in voluptate velit esse cill doloreeu fugiat nulla pariatur
-                excepteur sint.
-              </p>
-            </div>
-          </div>
-
-          <div className="comment-box">
-            <img src={user2} alt="David Martin" className="comment-avatar" />
-            <div className="comment-content">
-              <div className="comment-header">
-                <div>
-                  <h4>David Martin</h4>
-                  <span className="comment-date">20 May, 2020 . 4:00 pm</span>
-                </div>
-                <div className="comment-rating">★★★★★</div>
-              </div>
-              <p>
-                Aliquam et facilisis arcuut olestie augue. Suspendisse sodales tortor nunc quis auctor ligula posuere
-                cursus duis aute irure dolor in reprehenderit in voluptate velit esse cill doloreeu fugiat nulla pariatur
-                excepteur sint.
-              </p>
-            </div>
-          </div>
+        {comment.length > 0 && comment.map((cmt, index) => (
+  <div className="comment-box" key={index}>
+    <img src={cmt.image} alt={cmt.author} className="comment-avatar" />
+    <div className="comment-content">
+      <div className="comment-header">
+        <div>
+          <h4>{cmt.author}</h4>
+          <span className="comment-date">{cmt.date}</span>
+        </div>
+        <div className="comment-rating">
+          {"★".repeat(cmt.rating)}{"☆".repeat(5 - cmt.rating)}
+        </div>
+      </div>
+      <p>{cmt.message}</p>
+    </div>
+  </div>
+))}
         </section>
         <section className="add-review-section">
-  <h3 className="section-title">Add a Review</h3>
+          <h3 className="section-title">Add a Review</h3>
 
-  <label className="rate-label">Rate this Product?</label>
-  <div className="review-stars">⭐⭐⭐⭐⭐</div>
+          <label className="rate-label">Rate this Product</label>
+          <div className="review-stars">
+            {[1, 2, 3, 4, 5].map((star) => (
+              <span
+                key={star}
+                onClick={() => setRating(star)}
+                style={{
+                  cursor: "pointer",
+                  color: star <= rating ? "#f39c12" : "#ccc",
+                  fontSize: "24px",
+                  transition: "color 0.2s"
+                }}
+              >
+                ★
+              </span>
+            ))}
+          </div>
 
-  <form className="review-form">
-    <textarea className="review-message" placeholder="Write Message" rows="5" />
 
-    <div className="review-fields">
-      <input type="text" className="review-input" placeholder="Your Name" />
-      <input type="email" className="review-input" placeholder="Email Address" />
-    </div>
+          <form className="review-form" onSubmit={handleSubmit}>
+            <textarea className="review-message" placeholder="Write Message" rows="5" value={review} onChange={(e) => setReview(e.target.value)} />
 
-    <button type="submit" className="submit-review">Submit Review</button>
-  </form>
-</section>
+          
+
+            <button type="submit" className="submit-review" >Submit Review</button>
+          </form>
+        </section>
 
       </div>
     </>

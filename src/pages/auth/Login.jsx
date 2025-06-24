@@ -19,39 +19,39 @@ const Login = () => {
             [name]: value
         }));
     };
-const validateForm = () => {
-    const {username,password} = formData;
-    if(!username || !password){
-        Swal.fire({
-            icon: "warning",
-            title : "all fields are required",
-            text : "plese fill all field"
-        })
-         return false;
+    const validateForm = () => {
+        const { username, password } = formData;
+        if (!username || !password) {
+            Swal.fire({
+                icon: "warning",
+                title: "all fields are required",
+                text: "plese fill all field"
+            })
+            return false;
+        }
+        if (username.length < 3) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Invalid Username',
+                text: 'Username must be at least 3 characters long'
+            });
+            return false
+        }
+        if (password.length < 6) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Invalid Password',
+                text: 'Password must be at least 6 characters long'
+            });
+            return false;
+        }
+        return true;
     }
-   if(username.length<3){
-     Swal.fire({
-        icon: 'warning',
-        title: 'Invalid Username',
-        text: 'Username must be at least 3 characters long'
-      });
-      return false
-   }
-     if (password.length < 6) {
-      Swal.fire({
-        icon: 'warning',
-        title: 'Invalid Password',
-        text: 'Password must be at least 6 characters long'
-      });
-      return false;
-    }
-    return true;
-}
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-         if (!validateForm()) return;
+        if (!validateForm()) return;
         setLoading(true)
         fetch('https://dummyjson.com/auth/login', {
             method: 'POST',
@@ -71,10 +71,20 @@ const validateForm = () => {
 
                 }
                 return response.json();
+
             })
             .then((result) => {
                 if (result && result.accessToken) {
                     localStorage.setItem('loginToken', result.accessToken);
+                    localStorage.setItem('user', JSON.stringify({
+                        id: result.id,
+                        username: result.username,
+                        email: result.email,
+                        firstName: result.firstName,
+                        lastName: result.lastName,
+                        gender: result.gender,
+                        image: result.image
+                    }));
                     Swal.fire({
                         icon: 'success',
                         title: 'Login Successful',
