@@ -5,6 +5,14 @@ export const productContext = createContext();
 export const ProductProvider = ({ children }) => {
   const [product, setProduct] = useState([]);
   const [cartItem, setCartItem] = useState([]);
+  const [cartCount, setCartCount] = useState(0);
+
+  const fetchProducts = () => {
+    fetch("https://dummyjson.com/products?limit=150")
+      .then((res) => res.json())
+      .then((data) => setProduct(data.products))
+      .catch((err) => console.log("Error fetching products", err));
+  };
 
   const handleCartItems = (item) => {
     const newItem = {
@@ -21,35 +29,31 @@ export const ProductProvider = ({ children }) => {
 
     if (!itemExists) {
       const updatedCart = [...existingCart, newItem];
-      setCartItem(updatedCart);
       localStorage.setItem("cart", JSON.stringify(updatedCart));
+      setCartItem(updatedCart);
+      setCartCount(updatedCart.length);
     }
-  };
-
-  const fetchProducts = () => {
-    fetch("https://dummyjson.com/products?limit=150")
-      .then((res) => {
-        if (!res.ok) throw new Error("Failed to fetch products");
-        return res.json();
-      })
-      .then((data) => setProduct(data.products))
-      .catch((err) => console.log(err));
   };
 
   useEffect(() => {
     fetchProducts();
     const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
     setCartItem(savedCart);
+    setCartCount(savedCart.length);
   }, []);
 
   return (
-    <productContext.Provider value={{
-      product,
-      fetchProducts,
-      cartItem,
-      handleCartItems,
-      setCartItem
-    }}>
+    <productContext.Provider
+      value={{
+        product,
+        fetchProducts,
+        cartItem,
+        setCartItem,
+        cartCount,
+        setCartCount,
+        handleCartItems
+      }}
+    >
       {children}
     </productContext.Provider>
   );

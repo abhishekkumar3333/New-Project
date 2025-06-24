@@ -5,13 +5,15 @@ import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
     const navigate =useNavigate()
-  const { cartItem, setCartItem } = useContext(productContext);
+     
+  const { cartItem, setCartItem, setCartCount } = useContext(productContext);
   console.log(cartItem)
 
   const handleRemove = (id) => {
     const updatedCart = cartItem.filter(item => item.id !== id);
     setCartItem(updatedCart);
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
+    setCartCount(updatedCart.length); // ✅ update count
+  localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
 
   const total = cartItem.reduce((sum, item) => sum + item.price * (item.quantity || 1), 0);

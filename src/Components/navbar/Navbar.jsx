@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { IoMdMail } from "react-icons/io";
 import { FaLocationDot } from "react-icons/fa6";
 import { FaTwitter, FaFacebookF, FaPinterestP } from "react-icons/fa";
@@ -7,8 +7,10 @@ import { FaCartPlus } from "react-icons/fa";
 import { IoMdLogOut } from "react-icons/io";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { productContext } from '../../pages/context/ProductContext';
 
 const Navbar = () => {
+  const {cartItem,cartCount} = useContext(productContext);
   const location = useLocation();
   const homePage = location.pathname === '/' || location.pathname === "/portfolio";
   const navigate = useNavigate();
@@ -18,9 +20,9 @@ const Navbar = () => {
     localStorage.clear();
     navigate("/login");
   };
-useEffect(() => {
-  setMobileMenuOpen(false);
-}, [location.pathname]);
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location.pathname]);
   useEffect(() => {
     const header = document.getElementById("stiky-header");
     const mainHeader = document.getElementById("header");
@@ -80,14 +82,14 @@ useEffect(() => {
         <div className="bottom-header" id='stiky-header'>
           <div className="container">
             <div className="main-header">
-             <div className='logo-outer'> <div className="logo">
-                <img src="logo1.webp" alt="Logo" onClick={()=>navigate("/")} />
+              <div className='logo-outer'> <div className="logo">
+                <img src="logo1.webp" alt="Logo" onClick={() => navigate("/")} />
               </div>
 
-              {/* Mobile Menu Toggle */}
-              <div className="mobile-menu-icon" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-                <GiHamburgerMenu />
-              </div>
+                {/* Mobile Menu Toggle */}
+                <div className="mobile-menu-icon" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+                  <GiHamburgerMenu />
+                </div>
               </div>
 
               <div className={`header-element ${mobileMenuOpen ? 'open' : ''}`}>
@@ -104,7 +106,13 @@ useEffect(() => {
               </div>
 
               <div className="search-icon">
-                <FaCartPlus onClick={()=>navigate("/cart")} />
+                <div className="cart-wrapper">
+                  <FaCartPlus className="cart-icon" onClick={() => navigate("/cart")} />
+{cartCount > 0 && (
+  <span className="cart-count">{cartCount}</span>
+)}
+
+                </div>
                 <IoMdLogOut onClick={handleLogOut} style={{ cursor: 'pointer' }} />
               </div>
             </div>
