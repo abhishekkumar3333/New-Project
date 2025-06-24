@@ -17,6 +17,7 @@ import AllProducts from './pages/product/AllProducts';
 import { ProductProvider } from './pages/context/ProductContext';
 import ProductDetails from './pages/product/ShowProductsDetails';
 import PortFolio from './Components/portfolio/PortFolio';
+import Cart from './pages/product/cart/Cart';
 
 function AppContent() {
   const location = useLocation();
@@ -42,6 +43,7 @@ function AppContent() {
                <Route path="/blog" element={<Varify><Blog /></Varify>} />
                <Route path="/allproducts" element={<Varify><AllProducts /></Varify>} />
                <Route path="/portfolio" element={<Varify><PortFolio /></Varify>} />
+               <Route path="/cart" element={<Varify><Cart /></Varify>} />
                
                <Route path="/login" element={<Login />} />
                <Route path="/product/:id" element={<ProductDetails/>} />

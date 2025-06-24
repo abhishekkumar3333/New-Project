@@ -1058,6 +1058,7 @@ label {
   align-items: center;
   transition: transform 0.2s ease;
   background-color: #fff;
+  width: 300px;
 }
 
 .product-card:hover {
@@ -1067,10 +1068,17 @@ label {
 .product-card img {
   width: 100%;
   height: 200px;
-  object-fit: cover;
   border-radius: 6px;
 }
-
+ .container .cheadingart{
+  font-size: 30px;
+  text-align: center;
+}
+h2.cheadingart- {
+    font-size: 30px;
+    text-align: center;
+    padding: 10px 0;
+}
 .product-card h3 {
   font-size: 18px;
   margin: 10px 0 5px;
@@ -1992,4 +2000,99 @@ header#header {
 }
 .logout-btn{
   display: none;
+}
+.cart-container {
+  padding: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.cart-title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+.empty-cart {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #888;
+}
+
+.cart-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  gap: 20px;
+  justify-content: center;
+}
+.cart-container h2 {
+    font-size: 36px;
+    text-align: center;
+}
+.cart-item {
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0,0,0,0.08);
+  transition: transform 0.2s;
+}
+
+.cart-item:hover {
+  transform: scale(1.02);
+}
+
+.cart-item-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.cart-item-details {
+  padding: 16px;
+}
+
+.cart-item-details h3 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 1.2rem;
+}
+
+.cart-item-details p {
+  margin: 4px 0;
+  color: #555;
+}
+
+.cart-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.cart-buttons button {
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  background: #007bff;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+
+.cart-buttons button:hover {
+  background: #0056b3;
+}
+
+.cart-total {
+  text-align: right;
+  margin-top: 30px;
+  font-size: 1.4rem;
+  font-weight: bold;
 }

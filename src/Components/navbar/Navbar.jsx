@@ -3,7 +3,7 @@ import { IoMdMail } from "react-icons/io";
 import { FaLocationDot } from "react-icons/fa6";
 import { FaTwitter, FaFacebookF, FaPinterestP } from "react-icons/fa";
 import { AiFillInstagram } from "react-icons/ai";
-import { HiOutlineSearch } from "react-icons/hi";
+import { FaCartPlus } from "react-icons/fa";
 import { IoMdLogOut } from "react-icons/io";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -94,18 +94,17 @@ useEffect(() => {
                 <ul>
                   <li><Link to="/">Home</Link></li>
                   <li><Link to="/about">About Us</Link></li>
-                  <li><Link to="/page">Pages</Link></li>
                   <li><Link to="/service">Services</Link></li>
                   <li><Link to="/portfolio">PortfoLio</Link></li>
                   <li><Link to="/allproducts">Shop</Link></li>
                   <li><Link to="/blog">Blog</Link></li>
-                  <li><Link to="/contact">Contact</Link></li>
+                  <li><Link to="/cart">Cart</Link></li>
                   <li className='logout-btn'><Link to="/login">Logout</Link></li>
                 </ul>
               </div>
 
               <div className="search-icon">
-                <HiOutlineSearch />
+                <FaCartPlus onClick={()=>navigate("/cart")} />
                 <IoMdLogOut onClick={handleLogOut} style={{ cursor: 'pointer' }} />
               </div>
             </div>
